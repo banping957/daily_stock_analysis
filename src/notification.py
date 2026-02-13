@@ -844,10 +844,21 @@ class NotificationService:
                 # 网格交易适用性分析
                 grid_trading = battle.get('grid_trading', '')
                 if grid_trading:
+                    # 确保 grid_trading 是字符串类型
+                    if isinstance(grid_trading, dict):
+                        # 如果是字典，格式化输出
+                        import json
+                        grid_trading_text = json.dumps(grid_trading, ensure_ascii=False, indent=2)
+                    elif isinstance(grid_trading, str):
+                        grid_trading_text = grid_trading
+                    else:
+                        # 其他类型转为字符串
+                        grid_trading_text = str(grid_trading)
+                    
                     report_lines.extend([
                         "**📊 网格交易适用性**",
                         "",
-                        grid_trading,
+                        grid_trading_text,
                         "",
                     ])
             
