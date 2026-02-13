@@ -840,6 +840,16 @@ class NotificationService:
                     for item in checklist:
                         report_lines.append(f"- {item}")
                     report_lines.append("")
+                
+                # 网格交易适用性分析
+                grid_trading = battle.get('grid_trading', '')
+                if grid_trading:
+                    report_lines.extend([
+                        "**📊 网格交易适用性**",
+                        "",
+                        grid_trading,
+                        "",
+                    ])
             
             # 如果没有 dashboard，显示传统格式
             if not dashboard:
